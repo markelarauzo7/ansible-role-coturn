@@ -164,8 +164,8 @@ external-ip={{ ip }}
 # Lower and upper bounds of the UDP relay endpoints:
 # (default values are 49152 and 65535)
 #
-{% if min_port is defined %}min-port={{ min_port }}{% else %}#min-port=49152{% endif %}
-{% if max_port is defined %}max-port={{ max_port }}{% else %}#max-port=65535{% endif %}
+{% if coturn_min_port is defined %}min-port={{ coturn_min_port }}{% else %}#min-port=49152{% endif %}
+{% if coturn_max_port is defined %}max-port={{ coturn_max_port }}{% else %}#max-port=65535{% endif %}
 
 # Uncomment to run TURN server in 'normal' 'moderate' verbose mode.
 # By default the verbose mode is off.
@@ -273,7 +273,7 @@ lt-cred-mech
 # 'Static' user accounts are NOT dynamically checked by the turnserver process,
 # so they can NOT be changed while the turnserver is running.
 #
-{% if user is defined %}user={{ user }}{% else %}#user=username1:key1{% endif %}
+{% if coturn_user is defined %}user={{ coturn_user }}{% else %}#user=username1:key1{% endif %}
 #user=username1:key1
 #user=username2:key2
 # OR:
@@ -540,7 +540,7 @@ no-stdout-log
 # In the runtime, the logfile can be reset with the SIGHUP signal
 # to the turnserver process.
 #
-{% if log-file is defined %}log-file={{ log-file }}{% else %}#log-file=/var/tmp/turn.log{% endif %}
+{% if coturn_log_file is defined %}log-file={{ coturn_log_file }}{% else %}#log-file=/var/tmp/turn.log{% endif %}
 
 # Option to redirect all log output into system log (syslog).
 #
