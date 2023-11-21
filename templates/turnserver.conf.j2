@@ -164,8 +164,8 @@ external-ip={{ ip }}
 # Lower and upper bounds of the UDP relay endpoints:
 # (default values are 49152 and 65535)
 #
-{% if max-port is defined %}min-port={{ min_port }}{% else %}#min-port=49152{% endif %}
-{% if max-port is defined %}min-port={{ max-port }}{% else %}#max-port=65535{% endif %}
+{% if min_port is defined %}min-port={{ min_port }}{% else %}#min-port=49152{% endif %}
+{% if max_port is defined %}max-port={{ max_port }}{% else %}#max-port=65535{% endif %}
 
 # Uncomment to run TURN server in 'normal' 'moderate' verbose mode.
 # By default the verbose mode is off.
