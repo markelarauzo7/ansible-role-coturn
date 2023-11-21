@@ -164,8 +164,8 @@ external-ip={{ ip }}
 # Lower and upper bounds of the UDP relay endpoints:
 # (default values are 49152 and 65535)
 #
-#min-port=49152
-#max-port=65535
+{% if max-port is defined %}min-port={{ min_port }}{% else %}#min-port=49152{% endif %}
+{% if max-port is defined %}min-port={{ max-port }}{% else %}#max-port=65535{% endif %}
 
 # Uncomment to run TURN server in 'normal' 'moderate' verbose mode.
 # By default the verbose mode is off.
@@ -248,7 +248,7 @@ fingerprint
 # Use either lt-cred-mech or use-auth-secret in the conf
 # to avoid any confusion.
 #
-use-auth-secret
+lt-cred-mech
 
 # 'Static' authentication secret value (a string) for TURN REST API only.
 # If not set, then the turn server
@@ -257,7 +257,7 @@ use-auth-secret
 # by a separate program, so this is why that mode is considered 'dynamic'.
 #
 #static-auth-secret=north
-static-auth-secret={{ coturn_static_auth_secret }}
+#static-auth-secret={{ coturn_static_auth_secret }}
 
 # Server name used for
 # the oAuth authentication purposes.
@@ -274,6 +274,7 @@ static-auth-secret={{ coturn_static_auth_secret }}
 # 'Static' user accounts are NOT dynamically checked by the turnserver process,
 # so they can NOT be changed while the turnserver is running.
 #
+{% if user is defined %}user={{ user }}{% else %}#user=username1:key1{% endif %}
 #user=username1:key1
 #user=username2:key2
 # OR:
@@ -540,7 +541,7 @@ no-stdout-log
 # In the runtime, the logfile can be reset with the SIGHUP signal
 # to the turnserver process.
 #
-#log-file=/var/tmp/turn.log
+{% if log-file is defined %}log-file={{ log-file }}{% else %}#log-file=/var/tmp/turn.log{% endif %}
 
 # Option to redirect all log output into system log (syslog).
 #
